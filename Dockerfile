@@ -21,14 +21,13 @@ CMD ["/sbin/my_init"]
  usermod -d /home nobody && \
  chown -R nobody:users /home
 
-
 RUN add-apt-repository ppa:ondrej/php
 RUN apt-get update
 RUN apt-get upgrade -y
 RUN apt-get install -y mc tmux wget
 
 #First install the Jitsi repository key onto your system:
-RUN wget -qO - https://download.jitsi.org/jitsi-key.gpg.key | sudo apt-key add -
+RUN wget -qO - https://download.jitsi.org/jitsi-key.gpg.key | apt-key add -
 
 #Create a sources.list.d file with the repository:
 RUN sh -c "echo 'deb https://download.jitsi.org stable/' > /etc/apt/sources.list.d/jitsi-stable.list"
@@ -43,3 +42,9 @@ RUN apt-get -y install jitsi-meet
 #RUN apt-get -y install jitsi-videobridge
 #RUN apt-get -y install jicofo
 #RUN apt-get -y install jigasi
+
+# Expose Ports
+EXPOSE 80 443
+
+# The www directory and proxy config location
+VOLUME ["/config", "/logs"]
