@@ -33,6 +33,7 @@ RUN wget -qO - https://download.jitsi.org/jitsi-key.gpg.key | apt-key add -
 
 #Create a sources.list.d file with the repository:
 RUN sh -c "echo 'deb https://download.jitsi.org stable/' > /etc/apt/sources.list.d/jitsi-stable.list"
+RUN apt-get update
 
 #Install the full suite:
 RUN apt-get install jitsi-meet -y
