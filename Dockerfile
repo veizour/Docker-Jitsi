@@ -24,6 +24,7 @@ RUN add-apt-repository ppa:ondrej/php
 RUN add-apt-repository ppa:openjdk-r/ppa
 RUN apt-get update
 RUN apt-get upgrade -y
+RUN echo y | unminimize
 RUN apt-get install -y mc tmux wget systemd
 RUN apt install openjdk-8-jre-headless -y
 RUN apt install nginx -y
