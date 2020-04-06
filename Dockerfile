@@ -9,10 +9,8 @@ ENV LANG            en_US.UTF-8
 ENV LANGUAGE        en_US.UTF-8
 ENV TERM xterm
 
-
 # Use baseimage-docker's init system
 CMD ["/sbin/my_init"]
-
 
 # Configure user nobody to match unRAID's settings
  RUN \
@@ -27,12 +25,8 @@ RUN add-apt-repository ppa:openjdk-r/ppa
 RUN apt-get update
 RUN apt-get upgrade -y
 RUN apt-get install -y mc tmux wget systemd
-
 RUN apt install openjdk-8-jre-headless -y
-
 RUN apt install nginx -y
-#RUN systemctl start nginx
-#RUN systemctl enable nginx
 
 #First install the Jitsi repository key onto your system:
 RUN wget -qO - https://download.jitsi.org/jitsi-key.gpg.key | apt-key add -
@@ -40,14 +34,8 @@ RUN wget -qO - https://download.jitsi.org/jitsi-key.gpg.key | apt-key add -
 #Create a sources.list.d file with the repository:
 RUN sh -c "echo 'deb https://download.jitsi.org stable/' > /etc/apt/sources.list.d/jitsi-stable.list"
 
-RUN apt update
-RUN apt install jitsi-meet -y
-
-#Update your package list:
-RUN apt-get -y update
-
 #Install the full suite:
-RUN apt-get -y install jitsi-meet
+RUN apt-get install jitsi-meet -y
 
 RUN /usr/share/jitsi-meet/scripts/install-letsencrypt-cert.sh
 
