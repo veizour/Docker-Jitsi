@@ -24,7 +24,7 @@ RUN add-apt-repository ppa:ondrej/php
 RUN add-apt-repository ppa:openjdk-r/ppa
 RUN apt-get update
 RUN apt-get upgrade -y
-RUN apt-get install -y mc tmux wget systemd
+RUN apt-get install -y mc tmux wget systemd https
 RUN apt install openjdk-8-jre-headless -y
 RUN apt install nginx -y
 
@@ -33,10 +33,10 @@ RUN wget -qO - https://download.jitsi.org/jitsi-key.gpg.key | apt-key add -
 
 #Create a sources.list.d file with the repository:
 RUN sh -c "echo 'deb https://download.jitsi.org stable/' > /etc/apt/sources.list.d/jitsi-stable.list"
-RUN apt-get update
+RUN apt-get -y update
 
 #Install the full suite:
-RUN apt-get install jitsi-meet -y
+RUN apt-get -y install jitsi-meet
 
 RUN /usr/share/jitsi-meet/scripts/install-letsencrypt-cert.sh
 
