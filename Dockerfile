@@ -31,8 +31,8 @@ RUN apt-get install -y mc tmux wget systemd
 RUN apt install openjdk-8-jre-headless -y
 
 RUN apt install nginx -y
-RUN systemctl start nginx
-RUN systemctl enable nginx
+#RUN systemctl start nginx
+#RUN systemctl enable nginx
 
 #First install the Jitsi repository key onto your system:
 RUN wget -qO - https://download.jitsi.org/jitsi-key.gpg.key | apt-key add -
